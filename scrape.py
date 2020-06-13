@@ -22,7 +22,7 @@ def scrape():
         try:
             txt = get_text(url)
             with open(f"txt/{year}/{month:02d}/{year}-{month:02d}-{region}.txt", "w") as f:
-                f.writelines(txt)
+                f.write(txt)
             print("y")
         except ValueError:
             errorfile.write(f"{year},{month:02d},{region}\n")
@@ -38,9 +38,11 @@ def get_text(url):
     txt = r.text.replace("<br>", "").replace("<br >", "")
     soup = BeautifulSoup(txt, features="html5lib")
     div = soup.find("div", class_="col-sm-12 col-lg-8 offset-lg-1")
-    lines = re.split(r"\n\s*\n", div.text)
-    lines = [re.sub(r"\s*\n\s*", " ", p.strip())+"\n" for p in lines if not re.fullmatch(r"\s*", p)]
-    return lines[3:]
+    # print(div.text)
+    raw = re.sub(r"\s*\n\s*", "\n", div.text).strip()
+    raw = raw.split("\n", 3)[3]
+    raw = re.sub(r"\s*\n\s*", " ", raw)
+    return raw
 
 def filesizes():
     errorfile = open("out/filesizes.csv", "w")
@@ -62,10 +64,12 @@ def missings():
 
 if __name__ == "__main__":
     # scrape()
+    # missings()
+    # filesizes()
     good_url_1 = "https://www.minneapolisfed.org/beige-book-reports/1970/1970-05-at"
     good_url_2 = "https://www.minneapolisfed.org/beige-book-reports/1971/1971-05-sf"
     good_url_3 = "https://www.minneapolisfed.org/beige-book-reports/2001/2001-09-cl"
-    bad_url_1 = "https://www.minneapolisfed.org/beige-book-reports/1971/1971-02-kc"
+    bad_url_1 = "https://www.minneapolisfed.org/beige-book-reports/1975/1975-01-su"
     bad_url_2 = "https://www.minneapolisfed.org/beige-book-reports/1971/1971-07-ch"
-    lines = get_text(bad_url_2)
+    lines = get_text(good_url_2)
     print(lines)
