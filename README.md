@@ -2,12 +2,14 @@
 Scrape and analyze the Federal Reserve Beige Book reports
 
 ## TODO
-- [ ] Bug with `<br>` tag instead of `<br />`
+- [x] Bug with `<br>` tag instead of `<br />`
     - 1983 07 ri
     - Replacing all `br` tags removes subsequent paragraph
-- [ ] Remove `<strong>`
+    - Fixed by ignoring line breaks
+- [x] Remove `<strong>`
+    - Ignored
 - [ ] `&nbsp;` problem (check if this gets removed)
-- [ ] Some files are empty
+- [x] Some files are empty
     - Could be `<br>` problem
 - [x] Analyze `errors.txt`
 - [ ] Delete "learn more" `<p>` at the bottom

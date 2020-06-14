@@ -1,21 +1,36 @@
 import os
 import re
+import csv
 import requests
 from bs4 import BeautifulSoup
 
-def gen():
-    regions = ["at", "bo", "ch", "cl", "da", "kc", "mi", "ny", "ph", "ri", "sf", "sl", "su"]
+def gen(skip=False):
+    if skip:
+        try:
+            with open("out/norelease.csv", "r") as f:
+                f.readline()
+                norelease = {(int(y), int(m)) for y, m in csv.reader(f)}
+            with open("out/incomplete.csv", "r") as f:
+                f.readline()
+                incomplete = {(int(y), int(m), r) for y, m, r in csv.reader(f)}
+        except FileNotFoundError:
+            skip = False
+    regions = ("at", "bo", "ch", "cl", "da", "kc", "mi", "ny", "ph", "ri", "sf", "sl", "su")
     for year in range(1970, 2021):
         os.makedirs(f"txt/{year}", exist_ok=True)
         for month in range(1, 13):
+            if skip and (year, month) in norelease:
+                continue
             os.makedirs(f"txt/{year}/{month:02d}", exist_ok=True)
             for region in regions:
+                if skip and (year, month, region) in incomplete:
+                    continue
                 yield year, month, region
 
-def scrape():
+def scrape(skip=False):
     errorfile = open("out/missing.csv", "w")
     errorfile.write("year,month,region\n")
-    for year, month, region in gen():
+    for year, month, region in gen(skip):
         print(f"{year}", f"{month:02d}", f"{region}", end=" ")
         header = "https://www.minneapolisfed.org/beige-book-reports/"
         url = header + f"{year}/{year}-{month:02d}-{region}"
@@ -47,29 +62,22 @@ def get_text(url):
 def filesizes():
     errorfile = open("out/filesizes.csv", "w")
     errorfile.write("year,month,region,filesize\n")
-    for year, month, region in gen():
+    for year, month, region in gen(False):
         filename = f"txt/{year}/{month:02d}/{year}-{month:02d}-{region}.txt"
         if os.path.exists(filename):
             errorfile.write(f"{year},{month:02d},{region},{os.path.getsize(filename)}\n")
     errorfile.close()
 
 def missings():
-    errorfile = open("out/missings.csv", "w")
+    errorfile = open("out/missing.csv", "w")
     errorfile.write("year,month,region\n")
-    for year, month, region in gen():
+    for year, month, region in gen(False):
         filename = f"txt/{year}/{month:02d}/{year}-{month:02d}-{region}.txt"
         if not os.path.exists(filename):
             errorfile.write(f"{year},{month:02d},{region}\n")
     errorfile.close()
 
 if __name__ == "__main__":
-    # scrape()
-    # missings()
-    # filesizes()
-    good_url_1 = "https://www.minneapolisfed.org/beige-book-reports/1970/1970-05-at"
-    good_url_2 = "https://www.minneapolisfed.org/beige-book-reports/1971/1971-05-sf"
-    good_url_3 = "https://www.minneapolisfed.org/beige-book-reports/2001/2001-09-cl"
-    bad_url_1 = "https://www.minneapolisfed.org/beige-book-reports/1975/1975-01-su"
-    bad_url_2 = "https://www.minneapolisfed.org/beige-book-reports/1971/1971-07-ch"
-    lines = get_text(good_url_2)
-    print(lines)
+    scrape()
+    missings()
+    filesizes()
