@@ -10,7 +10,10 @@ Scrape and analyze the Federal Reserve Beige Book reports
 - [x] Find missing/incomplete files
     - [x] Some files are empty
     - [x] Analyze `errors.txt`
-- [x] Grab missing files
+- [ ] Grab missing files
     - [ ] Grab missing `2016-0(4|6)-su` files
     - [ ] Grab missing `2015-07-*` files
     - [ ] Try to find missing `1971-01-bo`
+- [ ] Run sentiment analysis
+- [ ] Regress national sentiment on regional sentiments
+- [ ] Graph time series
