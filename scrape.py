@@ -35,9 +35,7 @@ def get_text(url):
     return raw
 
 if __name__ == "__main__":
-    # scrape()
-    # missings()
-    # filesizes()
+    scrape()
     # with open("txt/2016/04/2016-04-su.txt", "w") as f:
         # f.write(get_text("https://www.minneapolisfed.org/beige-book-reports/2016/2016-04-national-summary"))
     # with open("txt/2016/06/2016-06-su.txt", "w") as f:
