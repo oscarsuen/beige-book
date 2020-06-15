@@ -1,4 +1,25 @@
+import os
 import pandas as pd
+
+from tools import *
+
+def filesizes():
+    errorfile = open("out/filesizes.csv", "w")
+    errorfile.write("year,month,region,filesize\n")
+    for year, month, region in gen(False):
+        filename = get_txt_file((year, month, region))
+        if os.path.exists(filename):
+            errorfile.write(f"{year},{month:02d},{region},{os.path.getsize(filename)}\n")
+    errorfile.close()
+
+def missings():
+    errorfile = open("out/missing.csv", "w")
+    errorfile.write("year,month,region\n")
+    for year, month, region in gen(False):
+        filename = get_txt_file((year, month, region))
+        if not os.path.exists(filename):
+            errorfile.write(f"{year},{month:02d},{region}\n")
+    errorfile.close()
 
 def analyze_missing(printing=True, writing=True):
     df = pd.read_csv("out/missing.csv")
@@ -23,5 +44,7 @@ def analyze_filesize(printing=True, writing=True):
         smallfiles.to_csv("out/smallfiles.csv", columns=['year', 'month', 'region'], index=False)
 
 if __name__ == "__main__":
+    missings()
+    filesizes()
     analyze_missing()
     analyze_filesize()

@@ -1,2 +1,4 @@
 out/tmp.txt
 *.pem
+txt-*
+__pycache__/
