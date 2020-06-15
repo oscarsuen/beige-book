@@ -5,7 +5,7 @@ from tools import *
 
 def analyze_all():
     outfile = open("out/sentiments.csv", "w")
-    outfile.write("year,month,reggion,v_com,v_neg,v_neu,v_pos,t_sub,t_pol\n")
+    outfile.write("year,month,region,v_com,v_neg,v_neu,v_pos,t_sub,t_pol\n")
     vader = nltk.sentiment.vader.SentimentIntensityAnalyzer()
     tb = textblob.en.sentiments.PatternAnalyzer()
     for year, month, region in gen(skip=True):

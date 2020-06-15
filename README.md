@@ -16,6 +16,14 @@ Scrape and analyze the Federal Reserve Beige Book reports
     - [ ] Try to find missing `1971-01-bo`
 - [x] Clean text
     - [ ] Replace `&%-+` with text?
-- [ ] Run sentiment analysis
-- [ ] Regress national sentiment on regional sentiments
+- [x] Run sentiment analysis
+    - [ ] Check out `flair` package
+- [x] Get exact dates of publication
+- [x] Generate histograms
+    - [x] Normalize values
+    - [x] Check out outlier (`1971-01-bo` missing doc)
+- [x] Regress national sentiment on regional sentiments
+    - [ ] Do you add a constant here?
 - [ ] Graph time series
+    - [ ] Pretty up plots (title+legend)
+    - [ ] Get GDP data
