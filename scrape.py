@@ -59,9 +59,15 @@ def scrape_dates():
             outfile.write(f"{year},{month},{day}\n")
     outfile.close()
 
+def get_econ_data():
+    r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=%23e1e9f0&chart_type=line&drp=0&fo=open%20sans&graph_bgcolor=%23ffffff&height=450&mode=fred&recession_bars=on&txtcolor=%23444444&ts=12&tts=12&width=1168&nt=0&thu=0&trc=0&show_legend=yes&show_axis_titles=yes&show_tooltip=yes&id=GDPC1&scale=left&cosd=1947-01-01&coed=2020-01-01&line_color=%234572a7&link_values=false&line_style=solid&mark_type=none&mw=3&lw=2&ost=-99999&oet=99999&mma=0&fml=a&fq=Quarterly&fam=avg&fgst=lin&fgsnd=2009-06-01&line_index=1&transformation=pch&vintage_date=2020-06-15&revision_date=2020-06-15&nd=1947-01-01")
+    with open("out/gdp.csv", "w") as f:
+        f.write(r.text)
+
 if __name__ == "__main__":
     # scrape()
-    scrape_dates()
+    # scrape_dates()
+    get_econ_data()
     # with open("txt/2016/04/2016-04-su.txt", "w") as f:
         # f.write(get_text("https://www.minneapolisfed.org/beige-book-reports/2016/2016-04-national-summary"))
     # with open("txt/2016/06/2016-06-su.txt", "w") as f:

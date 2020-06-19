@@ -24,6 +24,11 @@ Scrape and analyze the Federal Reserve Beige Book reports
     - [x] Check out outlier (`1971-01-bo` missing doc)
 - [x] Regress national sentiment on regional sentiments
     - [ ] Do you add a constant here?
+    - [ ] See if coefficient sum to 1
 - [ ] Graph time series
     - [ ] Pretty up plots (title+legend)
-    - [ ] Get GDP data
+    - [x] Get GDP data
+    - [ ] Check stock market data
+    - [ ] Think about timing of Beige Book data
+- [ ] Investigate discrepancies between `VADER` and `TextBlob`
+    - [ ] In `su` `TextBlob` is high during 1974 recession and higher during 1990s boom

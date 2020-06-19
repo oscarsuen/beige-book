@@ -1,13 +1,15 @@
 import nltk.sentiment
 import textblob
+import flair
 
 from tools import *
 
 def analyze_all():
     outfile = open("out/sentiments.csv", "w")
-    outfile.write("year,month,region,v_com,v_neg,v_neu,v_pos,t_sub,t_pol\n")
+    outfile.write("year,month,region,v_com,v_neg,v_neu,v_pos,t_sub,t_pol,f_score\n")
     vader = nltk.sentiment.vader.SentimentIntensityAnalyzer()
     tb = textblob.en.sentiments.PatternAnalyzer()
+    fs = flair.models.TextClassifier.load('en-sentiment')
     for year, month, region in gen(skip=True):
         print(f"{year} {month:02d} {region}")
         filename = get_txt_file((year, month, region))
@@ -19,7 +21,8 @@ def analyze_all():
         print()
         t_score = tb.analyze(s)
         print(f"subjectivity: {t_score.subjectivity}, polarity: {t_score.polarity}")
-        outfile.write(f"{year},{month:02d},{region},{v_score['compound']},{v_score['neg']},{v_score['neu']},{v_score['pos']},{t_score.subjectivity},{t_score.polarity}\n")
+        f_score = fs.predict(flair.data.Sentence(s))
+        outfile.write(f"{year},{month:02d},{region},{v_score['compound']},{v_score['neg']},{v_score['neu']},{v_score['pos']},{t_score.subjectivity},{t_score.polarity},{f_score[0].labels[0].score*(-1,1)[f_score[0].labels[0].value=='POSITIVE']}\n")
     outfile.close()
 
 if __name__ == "__main__":
