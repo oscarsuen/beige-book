@@ -22,6 +22,7 @@ def analyze_all():
         t_score = tb.analyze(s)
         print(f"subjectivity: {t_score.subjectivity}, polarity: {t_score.polarity}")
         f_score = fs.predict(flair.data.Sentence(s))
+        print(f"score: {f_score[0].labels[0].score*(-1,1)[f_score[0].labels[0].value=='POSITIVE']}")
         outfile.write(f"{year},{month:02d},{region},{v_score['compound']},{v_score['neg']},{v_score['neu']},{v_score['pos']},{t_score.subjectivity},{t_score.polarity},{f_score[0].labels[0].score*(-1,1)[f_score[0].labels[0].value=='POSITIVE']}\n")
     outfile.close()
 
