@@ -17,7 +17,8 @@ Scrape and analyze the Federal Reserve Beige Book reports
 - [x] Clean text
     - [ ] Replace `&%-+` with text?
 - [x] Run sentiment analysis
-    - [ ] Check out `flair` package
+    - [x] Check out `flair` package
+    - [x] `flair` gives values `x<-0.5 | x>0.5` (fixed in analysis)
 - [x] Get exact dates of publication
 - [x] Generate histograms
     - [x] Normalize values
@@ -25,10 +26,12 @@ Scrape and analyze the Federal Reserve Beige Book reports
 - [x] Regress national sentiment on regional sentiments
     - [ ] Do you add a constant here?
     - [ ] See if coefficient sum to 1
-- [ ] Graph time series
+- [x] Graph time series
     - [ ] Pretty up plots (title+legend)
     - [x] Get GDP data
-    - [ ] Check stock market data
+    - [x] Check stock market data
     - [ ] Think about timing of Beige Book data
-- [ ] Investigate discrepancies between `VADER` and `TextBlob`
+    - [ ] By region in a grid
+- [ ] Investigate discrepancies between sentiment scores
     - [ ] In `su` `TextBlob` is high during 1974 recession and higher during 1990s boom
+- [ ] Add info + pictures to `README.md`
