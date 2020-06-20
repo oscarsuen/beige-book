@@ -33,11 +33,11 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
     - [ ] Do you add a constant here?
     - [ ] See if coefficient sum to 1
 - [x] Graph time series
-    - [ ] Pretty up plots (title+legend)
+    - [x] Pretty up plots (title+legend)
     - [x] Get GDP data
     - [x] Check stock market data
     - [ ] Think about timing of Beige Book data
-    - [ ] By region in a grid
+    - [x] By region in a grid
 - [ ] Investigate discrepancies between sentiment scores
     - [ ] In `su` `TextBlob` is high during 1974 recession and higher during 1990s boom
-- [ ] Add info + pictures to `README.md`
+- [x] Add info + pictures to `README.md`
