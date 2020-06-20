@@ -150,7 +150,7 @@ def timeseries_plots(df, saveplot=False, show=True, width=3, colors=("C0", "C1",
             ax.remove()
         ax_top = fig.add_subplot(gs[0, :])
         df["su_ma"].plot(ax=ax_top)
-        ax.legend(handles=[mpl.patches.Patch(color="C0", label="Summary")])
+        ax_top.legend(handles=[mpl.patches.Patch(color="C0", label="Summary")])
         ax_top.xaxis.tick_top()
         ax_top.set_xlabel("")
         add_recessions(ax_top, df=recs)
