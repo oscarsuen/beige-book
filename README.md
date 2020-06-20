@@ -3,11 +3,9 @@ Scrape and analyze the Federal Reserve Beige Book reports.
 
 We use several off-the-shelf text sentiment analysis tools to analyze the sentiment of the Fed's Beige Book reports from 1970--2020.
 
-![GDP Growth Rate Comparison]
-(out/figs/timeseries_suma_drgdp_int.png)
+![GDP Growth Rate Comparison](out/figs/timeseries_suma_drgdp_int.png)
 
-![Sentiment by District]
-(out/figs/timeseries_district_vader.png)
+![Sentiment by District](out/figs/timeseries_district_vader.png)
 
 ## TODO
 - [x] Fix parsing errors
