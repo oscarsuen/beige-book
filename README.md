@@ -38,6 +38,9 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
     - [x] Check stock market data
     - [ ] Think about timing of Beige Book data
     - [x] By region in a grid
+    - [ ] Bond yields
 - [ ] Investigate discrepancies between sentiment scores
     - [ ] In `su` `TextBlob` is high during 1974 recession and higher during 1990s boom
 - [x] Add info + pictures to `README.md`
+- [ ] GDP Growth by region
+    - [ ] Aggregate state data
