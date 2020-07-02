@@ -1,0 +1,11 @@
+numpy
+pandas
+matplotlib
+requests
+beautifulsoup4
+cleantext
+nltk
+textblob
+flair
+transformers
+statsmodels

@@ -7,12 +7,29 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
 
 ![Sentiment by District](out/figs/timeseries_district_vader.png)
 
+## Dependencies
+- `analysis.py`
+    - `numpy`
+    - `pandas`
+    - `statsmodels`
+    - `matplotlib`
+- `clean.py`
+    - `cleantext`
+- `files.py`
+    - `pandas`
+- `scrape.py`
+    - `requests`
+    - `beautifulsoup4`
+- `sentiment.py`
+    - `nltk`
+    - `textblob`
+    - `flair`
 ## TODO
 - [x] Fix parsing errors
     - [x] Bug with `<br>` tag instead of `<br />` (no more breaks)
     - [x] Remove `<strong>` (ignored)
     - [x] `&nbsp;` problem (check if this gets removed)
-    - [ ] Delete "learn more" `<p>` at the bottom
+    - [x] Delete "learn more" `<p>` at the bottom (`grep -RIl "www\." txt/`)
 - [x] Find missing/incomplete files
     - [x] Some files are empty
     - [x] Analyze `errors.txt`
@@ -22,9 +39,14 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
     - [ ] Try to find missing `1971-01-bo`
 - [x] Clean text
     - [ ] Replace `&%-+` with text?
+    - [ ] Replace numbers with words
+    - [x] Check that text is ASCII
 - [x] Run sentiment analysis
     - [x] Check out `flair` package
     - [x] `flair` gives values `x<-0.5 | x>0.5` (fixed in analysis)
+    - [ ] Check if all text is used or just first `n` words
+    - [ ] `transformers` package
+    - [ ] Just extract numbers (bigger is better)
 - [x] Get exact dates of publication
 - [x] Generate histograms
     - [x] Normalize values
@@ -39,6 +61,7 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
     - [ ] Think about timing of Beige Book data
     - [x] By region in a grid
     - [ ] Bond yields
+- [ ] Time series regression
 - [ ] Investigate discrepancies between sentiment scores
     - [ ] In `su` `TextBlob` is high during 1974 recession and higher during 1990s boom
 - [x] Add info + pictures to `README.md`
