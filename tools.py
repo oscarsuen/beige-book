@@ -4,7 +4,7 @@ import csv
 def gen(skip=False):
     if skip:
         try:
-            with open("out/norelease.csv", "r") as f:
+            with open("out/csv/norelease.csv", "r") as f:
                 f.readline()
                 norelease = {(int(y), int(m)) for y, m in csv.reader(f)}
         except FileNotFoundError:

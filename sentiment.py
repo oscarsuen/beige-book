@@ -5,7 +5,7 @@ import flair
 from tools import *
 
 def analyze_all():
-    outfile = open("out/sentiments.csv", "w")
+    outfile = open("out/csv/sentiments.csv", "w")
     outfile.write("year,month,region,v_com,v_neg,v_neu,v_pos,t_sub,t_pol,f_score\n")
     vader = nltk.sentiment.vader.SentimentIntensityAnalyzer()
     tb = textblob.en.sentiments.PatternAnalyzer()

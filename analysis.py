@@ -10,8 +10,8 @@ UNNORM = ["v_diff", "t_pol", "f_fixed"]
 NORM = ["v_norm", "t_norm", "f_norm"]
 
 def make_dataset(printing=True):
-    main = pd.read_csv("out/sentiments.csv")
-    dates = pd.read_csv("out/dates.csv")
+    main = pd.read_csv("out/csv/sentiments.csv")
+    dates = pd.read_csv("out/csv/dates.csv")
     merged = pd.merge(main, dates, on=["year", "month"])
     merged["date"] = pd.to_datetime(merged[["year", "month", "day"]])
     cols = merged.columns.tolist()
@@ -33,12 +33,12 @@ def reshape_data(df, printing=False, cols=NORM):
     return dfs
 
 def get_recessions():
-    return pd.read_csv("out/recessions.csv")
+    return pd.read_csv("out/csv/recessions.csv")
 
 def get_econ_data():
-    df_gdp = pd.read_csv("out/gdp.csv", parse_dates=["DATE"])
-    df_unrate = pd.read_csv("out/unrate.csv", parse_dates=["DATE"])
-    df_stocks = pd.read_csv("out/stocks.csv", parse_dates=["DATE"])
+    df_gdp = pd.read_csv("out/csv/gdp.csv", parse_dates=["DATE"])
+    df_unrate = pd.read_csv("out/csv/unrate.csv", parse_dates=["DATE"])
+    df_stocks = pd.read_csv("out/csv/stocks.csv", parse_dates=["DATE"])
     df = df_gdp.merge(df_unrate, how="outer", on="DATE").merge(df_stocks, how="outer", on="DATE")
     df.columns = ["date", "drgdp", "urate", "dstock"]
     df = df.set_index("date").sort_index()["1970-4":"2020-5"]

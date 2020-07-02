@@ -8,22 +8,23 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
 ![Sentiment by District](out/figs/timeseries_district_vader.png)
 
 ## Dependencies
+Dependencies are listed in `requirements.txt`.  Tested + Developed on Python 3.8.
+- `scrape.py`
+    - `requests`
+    - `beautifulsoup4`
+- `files.py`
+    - `pandas`
+- `clean.py`
+    - `cleantext`
+- `sentiment.py`
+    - `nltk`
+    - `textblob`
+    - `flair`
 - `analysis.py`
     - `numpy`
     - `pandas`
     - `statsmodels`
     - `matplotlib`
-- `clean.py`
-    - `cleantext`
-- `files.py`
-    - `pandas`
-- `scrape.py`
-    - `requests`
-    - `beautifulsoup4`
-- `sentiment.py`
-    - `nltk`
-    - `textblob`
-    - `flair`
 ## TODO
 - [x] Fix parsing errors
     - [x] Bug with `<br>` tag instead of `<br />` (no more breaks)
@@ -38,7 +39,7 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
     - [x] Grab missing `2015-07-*` files
     - [ ] Try to find missing `1971-01-bo`
 - [x] Clean text
-    - [ ] Replace `&%-+` with text?
+    - [x] Replace `&%-+` with text?
     - [ ] Replace numbers with words
     - [x] Check that text is ASCII
 - [x] Run sentiment analysis
@@ -54,6 +55,7 @@ We use several off-the-shelf text sentiment analysis tools to analyze the sentim
 - [x] Regress national sentiment on regional sentiments
     - [ ] Do you add a constant here?
     - [ ] See if coefficient sum to 1
+    - [ ] Create proxy measure including all regions
 - [x] Graph time series
     - [x] Pretty up plots (title+legend)
     - [x] Get GDP data

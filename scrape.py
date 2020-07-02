@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from tools import *
 
 def scrape(skip=False):
-    errorfile = open("out/missing.csv", "w")
+    errorfile = open("out/csv/missing.csv", "w")
     errorfile.write("year,month,region\n")
     for year, month, region in gen(skip):
         print(f"{year}", f"{month:02d}", f"{region}", end=" ")
@@ -47,7 +47,7 @@ def get_date(url):
     return raw
 
 def scrape_dates():
-    outfile = open("out/dates.csv", "w")
+    outfile = open("out/csv/dates.csv", "w")
     outfile.write("year,month,day\n")
     for year, month, region in gen(skip=True):
         if region == 'at':
@@ -61,15 +61,15 @@ def scrape_dates():
 
 def get_econ_data():
     r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=%23e1e9f0&chart_type=line&drp=0&fo=open%20sans&graph_bgcolor=%23ffffff&height=450&mode=fred&recession_bars=on&txtcolor=%23444444&ts=12&tts=12&width=1168&nt=0&thu=0&trc=0&show_legend=yes&show_axis_titles=yes&show_tooltip=yes&id=GDPC1&scale=left&cosd=1947-01-01&coed=2020-01-01&line_color=%234572a7&link_values=false&line_style=solid&mark_type=none&mw=3&lw=2&ost=-99999&oet=99999&mma=0&fml=a&fq=Quarterly&fam=avg&fgst=lin&fgsnd=2009-06-01&line_index=1&transformation=pch&vintage_date=2020-06-15&revision_date=2020-06-15&nd=1947-01-01")
-    with open("out/gdp.csv", "w") as f:
+    with open("out/csv/gdp.csv", "w") as f:
         f.write(r.text)
     r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=%23e1e9f0&chart_type=line&drp=0&fo=open%20sans&graph_bgcolor=%23ffffff&height=450&mode=fred&recession_bars=on&txtcolor=%23444444&ts=12&tts=12&width=1168&nt=0&thu=0&trc=0&show_legend=yes&show_axis_titles=yes&show_tooltip=yes&id=UNRATE&scale=left&cosd=1948-01-01&coed=2020-05-01&line_color=%234572a7&link_values=false&line_style=solid&mark_type=none&mw=3&lw=2&ost=-99999&oet=99999&mma=0&fml=a&fq=Monthly&fam=avg&fgst=lin&fgsnd=2009-06-01&line_index=1&transformation=lin&vintage_date=2020-06-19&revision_date=2020-06-19&nd=1948-01-01")
-    with open("out/unrate.csv", "w") as f:
+    with open("out/csv/unrate.csv", "w") as f:
         f.write(r.text)
     r = requests.get("https://fred.stlouisfed.org/graph/fredgraph.csv?bgcolor=%23e1e9f0&chart_type=line&drp=0&fo=open%20sans&graph_bgcolor=%23ffffff&height=450&mode=fred&recession_bars=on&txtcolor=%23444444&ts=12&tts=12&width=1168&nt=0&thu=0&trc=0&show_legend=yes&show_axis_titles=yes&show_tooltip=yes&id=WILL5000INDFC&scale=left&cosd=1970-12-31&coed=2020-06-18&line_color=%234572a7&link_values=false&line_style=solid&mark_type=none&mw=3&lw=2&ost=-99999&oet=99999&mma=0&fml=a&fq=Monthly&fam=avg&fgst=lin&fgsnd=2020-02-01&line_index=1&transformation=pc1&vintage_date=2020-06-19&revision_date=2020-06-19&nd=1970-12-31")
-    with open("out/stocks.csv", "w") as f:
+    with open("out/csv/stocks.csv", "w") as f:
         f.write(r.text)
-    with open("out/recessions.csv", "w") as f:
+    with open("out/csv/recessions.csv", "w") as f:
         f.write("""
 start,end
 1969-12,1970-11

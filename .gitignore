@@ -1,4 +1,5 @@
+__pycache__/
+.venv/
 out/tmp.txt
 *.pem
 txt-*/
-__pycache__/
