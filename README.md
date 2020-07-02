@@ -1,7 +1,14 @@
 # Beige Book
-Scrape and analyze the Federal Reserve Beige Book reports.
-
 We use several off-the-shelf text sentiment analysis tools to analyze the sentiment of the Fed's Beige Book reports from 1970--2020.
+
+The raw text data is scraped from the [Minneapolis Fed](https://www.minneapolisfed.org/region-and-community/regional-economic-indicators/beige-book-archive) by `scrape.py` and stored in `txt`.  Do whatever you want with this data (I clearly do not own the copyright).
+
+The reports are scored in `sentiment.py` using three pre-trained models.  I am in the process of adding more.  So far the models used are
+- VADER from `NLTK`
+- Pattern analyzer from `TextBlob`
+- LSTM text classifier from `flair`
+
+The analysis is done in `analysis.py`, where we get the following graphs:
 
 ![GDP Growth Rate Comparison](out/figs/timeseries_suma_drgdp_int.png)
 
@@ -17,14 +24,17 @@ Dependencies are listed in `requirements.txt`.  Tested + Developed on Python 3.8
 - `clean.py`
     - `cleantext`
 - `sentiment.py`
+    - `pandas`
     - `nltk`
     - `textblob`
     - `flair`
+    - `transformers`
 - `analysis.py`
     - `numpy`
     - `pandas`
     - `statsmodels`
     - `matplotlib`
+
 ## TODO
 - [x] Fix parsing errors
     - [x] Bug with `<br>` tag instead of `<br />` (no more breaks)
