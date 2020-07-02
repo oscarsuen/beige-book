@@ -1,7 +1,7 @@
 import re
 import cleantext
 
-from tools import *
+from tools import * # pylint: disable=wildcard-import, unused-wildcard-import
 
 def clean():
     for t in gen(skip=True):

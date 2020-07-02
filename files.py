@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-from tools import *
+from tools import * # pylint: disable=wildcard-import, unused-wildcard-import
 
 def filesizes():
     errorfile = open("out/csv/filesizes.csv", "w")

@@ -1,9 +1,8 @@
-import os
 import re
 import requests
 from bs4 import BeautifulSoup
 
-from tools import *
+from tools import * # pylint: disable=wildcard-import, unused-wildcard-import
 
 def scrape(skip=False):
     errorfile = open("out/csv/missing.csv", "w")

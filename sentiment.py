@@ -2,7 +2,7 @@ import nltk.sentiment
 import textblob
 import flair
 
-from tools import *
+from tools import * # pylint: disable=wildcard-import, unused-wildcard-import
 
 def analyze_all():
     outfile = open("out/csv/sentiments.csv", "w")
