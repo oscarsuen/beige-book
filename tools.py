@@ -21,3 +21,10 @@ def gen(skip=False):
 
 def get_txt_file(t):
     return f"txt/{t[0]}/{t[1]:02d}/{t[0]}-{t[1]:02d}-{t[2]}.txt"
+
+def get_txt_string(year, month, region, printing=False):
+    if printing: print(f"{year} {month:02d} {region}") # pylint: disable=multiple-statements
+    filename = get_txt_file((year, month, region))
+    with open(filename, "r") as f:
+        s = f.read()
+    return s

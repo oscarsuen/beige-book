@@ -3,3 +3,4 @@ __pycache__/
 out/tmp.txt
 *.pem
 txt-*/
+!txt-split/
